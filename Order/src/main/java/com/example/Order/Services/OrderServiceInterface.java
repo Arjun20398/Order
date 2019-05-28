@@ -12,4 +12,5 @@ public interface OrderServiceInterface {
 
     List<OrderDTO> merchantOrder(Integer id);
     List<OrderDTO> userOrder(Integer id);
+    Long getsize();
 }

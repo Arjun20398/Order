@@ -1,5 +1,6 @@
 package com.example.Order.Services.OrderServiceImpl;
 
+import com.example.Order.ConvertToPDF.ConvertToPdf;
 import com.example.Order.Entity.Order;
 import com.example.Order.Model.OrderDTO;
 import com.example.Order.Repository.OrderRepository;
@@ -9,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.mail.MailException;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,9 +32,9 @@ public class OrderServiceImplementation  implements OrderServiceInterface {
     public String addOrder(OrderDTO order) {
         Order neworder = new Order();
         BeanUtils.copyProperties(order,neworder);
-         orderrepo.save(neworder);
-         return "order added";
-
+        orderrepo.save(neworder);
+        System.out.println(neworder);
+        return "order added";
     }
 
     @Override
@@ -58,6 +62,12 @@ public class OrderServiceImplementation  implements OrderServiceInterface {
     }
 
     @Override
+    public Long getsize()
+    {
+        return mongoTemplate.getCollection("E_commerce_order").countDocuments();
+    }
+
+    @Override
     public List<OrderDTO> userOrder(Integer userid) {
         Query query = new Query();
         query.addCriteria(Criteria.where("userid").is(userid));
@@ -70,5 +80,14 @@ public class OrderServiceImplementation  implements OrderServiceInterface {
             temp.add(temp1);
         }
         return temp;
+    }
+
+
+
+
+    public void sendEmail(String email,String message)
+    {
+        ConvertToPdf tempvar = new ConvertToPdf(email,message);
+        tempvar.makeemail();
     }
 }

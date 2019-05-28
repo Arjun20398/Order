@@ -1,33 +1,55 @@
 package com.example.Order.Entity;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.annotation.Generated;
 import java.util.Date;
-
 
 @Document(collection = "E_commerce_order")
 public class Order {
     @Id
-    Integer ordernumber;
-    Date orderdate;
-    Integer userid;
+    Long ordernumber;
+    Date orderdate;//
+    Integer userid;//
+    String productname;
+    String emailid;
     Integer merchantid;
     String paymentoption;
     String billingaddress;
     String shipingaddress;
     Integer productid;
     Integer productnumber;
+    String imurl;
     double price;
     double tax;
     double total;
 
-    public Order(Date orderdate, Integer ordernumber, Integer userid, Integer merchantid,
-                 String paymentoption, String billingaddress, String shipingaddress, Integer productid,
-                 Integer productnumber, double price, double tax, double total) {
-        this.orderdate = orderdate;
+    public String getProductname() {
+        return productname;
+    }
+
+    public void setProductname(String productname) {
+        this.productname = productname;
+    }
+    @Bean
+    public String getEmailid() {
+        return emailid;
+    }
+
+    public void setEmailid(String emailid) {
+        this.emailid = emailid;
+    }
+
+    public Order(Long ordernumber, Date orderdate, Integer userid, String productname,String imgurl, String emailid,
+                 Integer merchantid, String paymentoption, String billingaddress, String shipingaddress,
+                 Integer productid, Integer productnumber, double price, double tax, double total) {
         this.ordernumber = ordernumber;
+        this.orderdate = orderdate;
         this.userid = userid;
+        this.productname = productname;
+        this.emailid = emailid;
         this.merchantid = merchantid;
         this.paymentoption = paymentoption;
         this.billingaddress = billingaddress;
@@ -41,7 +63,15 @@ public class Order {
 
     public Order() {
     }
+    @Bean
+    public String getImurl() {
+        return imurl;
+    }
 
+    public void setImurl(String imurl) {
+        this.imurl = imurl;
+    }
+    @Bean
     public Date getOrderdate() {
         return orderdate;
     }
@@ -49,15 +79,15 @@ public class Order {
     public void setOrderdate(Date orderdate) {
         this.orderdate = orderdate;
     }
-
-    public Integer getOrdernumber() {
+    @Bean
+    public Long getOrdernumber() {
         return ordernumber;
     }
 
-    public void setOrdernumber(Integer ordernumber) {
+    public void setOrdernumber(Long ordernumber) {
         this.ordernumber = ordernumber;
     }
-
+    @Bean
     public Integer getUserid() {
         return userid;
     }
@@ -66,6 +96,7 @@ public class Order {
         this.userid = userid;
     }
 
+    @Bean
     public Integer getMerchantid() {
         return merchantid;
     }
@@ -74,6 +105,7 @@ public class Order {
         this.merchantid = merchantid;
     }
 
+    @Bean
     public String getPaymentoption() {
         return paymentoption;
     }
@@ -82,6 +114,7 @@ public class Order {
         this.paymentoption = paymentoption;
     }
 
+    @Bean
     public String getBillingaddress() {
         return billingaddress;
     }
@@ -90,6 +123,7 @@ public class Order {
         this.billingaddress = billingaddress;
     }
 
+    @Bean
     public String getShipingaddress() {
         return shipingaddress;
     }
@@ -98,6 +132,7 @@ public class Order {
         this.shipingaddress = shipingaddress;
     }
 
+    @Bean
     public Integer getProductid() {
         return productid;
     }
@@ -106,6 +141,7 @@ public class Order {
         this.productid = productid;
     }
 
+    @Bean
     public Integer getProductnumber() {
         return productnumber;
     }
@@ -114,6 +150,7 @@ public class Order {
         this.productnumber = productnumber;
     }
 
+    @Bean
     public double getPrice() {
         return price;
     }
@@ -122,6 +159,7 @@ public class Order {
         this.price = price;
     }
 
+    @Bean
     public double getTax() {
         return tax;
     }
@@ -130,6 +168,7 @@ public class Order {
         this.tax = tax;
     }
 
+    @Bean
     public double getTotal() {
         return total;
     }

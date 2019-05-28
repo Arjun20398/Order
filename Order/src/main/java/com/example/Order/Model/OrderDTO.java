@@ -5,24 +5,45 @@ import java.util.Date;
 public class OrderDTO {
 
     Date orderdate;
-    Integer ordernumber;
+    Long ordernumber;
     Integer userid;
+    String productname;
+    String emailid;
     Integer merchantid;
     String paymentoption;
     String billingaddress;
     String shipingaddress;
     Integer productid;
+    String imgurl;
     Integer productnumber;
     double price;
     double tax;
     double total;
 
-    public OrderDTO(Date orderdate, Integer ordernumber, Integer userid, Integer merchantid,
-                 String paymentoption, String billingaddress, String shipingaddress, Integer productid,
-                 Integer productnumber, double price, double tax, double total) {
+    public String getProductname() {
+        return productname;
+    }
+
+    public void setProductname(String productname) {
+        this.productname = productname;
+    }
+
+    public String getEmailid() {
+        return emailid;
+    }
+
+    public void setEmailid(String emailid) {
+        this.emailid = emailid;
+    }
+
+    public OrderDTO(Date orderdate, Long ordernumber, Integer userid,String imgurl, String productname, String emailid,
+                    Integer merchantid, String paymentoption, String billingaddress, String shipingaddress,
+                    Integer productid, Integer productnumber, double price, double tax, double total) {
         this.orderdate = orderdate;
         this.ordernumber = ordernumber;
         this.userid = userid;
+        this.productname = productname;
+        this.emailid = emailid;
         this.merchantid = merchantid;
         this.paymentoption = paymentoption;
         this.billingaddress = billingaddress;
@@ -37,6 +58,14 @@ public class OrderDTO {
     public OrderDTO() {
     }
 
+    public String getImgurl() {
+        return imgurl;
+    }
+
+    public void setImgurl(String imgurl) {
+        this.imgurl = imgurl;
+    }
+
     public Date getOrderdate() {
         return orderdate;
     }
@@ -45,11 +74,11 @@ public class OrderDTO {
         this.orderdate = orderdate;
     }
 
-    public Integer getOrdernumber() {
+    public Long getOrdernumber() {
         return ordernumber;
     }
 
-    public void setOrdernumber(Integer ordernumber) {
+    public void setOrdernumber(Long ordernumber) {
         this.ordernumber = ordernumber;
     }
 

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="spring-integration-mail-2.1.0.release-sources">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../spring-integration-mail-2.1.0.release-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
