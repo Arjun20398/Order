@@ -3,6 +3,7 @@ package com.example.Order.Controller;
 
 import com.example.Order.CartDTO.CartDTO;
 import com.example.Order.CartDTO.RespFromUser;
+import com.example.Order.CartDTO.ToCart;
 import com.example.Order.CartDTO.ToMerchant;
 import com.example.Order.Model.OrderDTO;
 import com.example.Order.ResponseFromCart.ResponseFromCart;
@@ -34,6 +35,11 @@ public class MainController {
         String url="http://172.16.20.24:8080/merchant/updatequantity";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+
+        ToCart tocart;
+        String url1="http://172.16.20.61:8080/cart/delete/";
+        HttpHeaders headers1 = new HttpHeaders();
+        headers1.setContentType(MediaType.APPLICATION_JSON);
 
         OrderDTO orderdto = new OrderDTO();
         CartDTO[] cartlist=order.getProductlist();
@@ -85,6 +91,10 @@ public class MainController {
             HttpEntity entity = new HttpEntity(tomerchant,headers);
             RestTemplate restTemplate = new RestTemplate();
             ResponseEntity<String> out = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+
+            HttpEntity entity1 = new HttpEntity(tempcart,headers1);
+            RestTemplate restTemplate1 = new RestTemplate();
+            ResponseEntity<String> out1 = restTemplate1.exchange(url1, HttpMethod.DELETE, entity1, String.class);
 
             service.addOrder(orderdto);
 
